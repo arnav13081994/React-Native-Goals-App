@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, Text, View, Button, TextInput, Alert} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, Alert, ScrollView} from 'react-native';
 
 export default function App() {
 
@@ -12,10 +12,7 @@ export default function App() {
     const addGoalHandler = () => {
 	//    Create a new Text element and append to the view
         Alert.alert(`Goal added!` );
-        goalList.push(goal);
-        updateGoalList(goalList);
-        console.log(goalList);
-
+        updateGoalList([...goalList, goal]);
 
     }
 
@@ -30,21 +27,28 @@ export default function App() {
 				           onSubmitEditing={addGoalHandler}
 				/>
 
-				<Button title='+'
-				        onPress={addGoalHandler}
-				/>
+				<Button title='+' onPress={addGoalHandler}/>
 
 			</View>
 
 			<View style={styles.GoalList}>
 				<Text> NEW GOALS:</Text>
-				<View>
-
-					<Text style={styles.GoalListItem}> GOAL #1</Text>
-					<Text style={styles.GoalListItem}> GOAL #2</Text>
-					<Text style={styles.GoalListItem}> GOAL #3</Text>
-
-				</View>
+				<ScrollView style={{contentContainerStyle: 'flex-start', width: '100%'}}>
+                    {
+                        goalList.map(
+                            (goalItem) => {
+                                return (
+                                    <View style={styles.GoalListItem}
+                                          key={goalItem}>
+                                        <Text>
+                                            {goalItem}
+                                        </Text>
+                                    </View>
+                                )
+                            }
+                        )
+                    }
+				</ScrollView>
 
 
 			</View>
@@ -67,11 +71,15 @@ const styles = StyleSheet.create(
 			justifyContent: 'space-evenly',
 		},
 		GoalList: {
-			flex: 3,
+			flex: 5,
 			alignItems: 'center',
 		},
 		GoalListItem: {
-			padding: 10
+			margin: 10,
+            borderColor: 'black',
+            borderWidth: 1,
+            width: '100%',
+
 
 		}
 
