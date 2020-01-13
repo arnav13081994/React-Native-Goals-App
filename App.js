@@ -78,9 +78,7 @@ const styles = StyleSheet.create(
 			margin: 10,
             borderColor: 'black',
             borderWidth: 1,
-            width: '100%',
-
-
+            flex: 1
 		}
 
 	}
