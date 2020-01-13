@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>App.js to start working on your app!</Text>
+
       <Button title={ text }
         onPress={ () => {
                 updateCount( count + 1 );
