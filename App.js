@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {StyleSheet, Text, View, Button, TextInput, Alert, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, Alert, FlatList} from 'react-native';
 
 export default function App() {
 
@@ -13,6 +13,10 @@ export default function App() {
 	//    Create a new Text element and append to the view
         Alert.alert(`Goal added!` );
         updateGoalList([...goalList, goal]);
+        // Clear the Text input field
+        updateGoal("");
+        // TODO Return focus back to the input field
+
 
     }
 
@@ -33,23 +37,19 @@ export default function App() {
 
 			<View style={styles.GoalList}>
 				<Text> NEW GOALS:</Text>
-				<ScrollView style={{contentContainerStyle: 'flex-start', width: '100%'}}>
-                    {
-                        goalList.map(
-                            (goalItem) => {
+                <FlatList data={goalList}
+                          style={{ contentContainerStyle: 'flex-start', width: '100%'}}
+                          renderItem={ (item) => {
                                 return (
-                                    <View style={styles.GoalListItem}
-                                          key={goalItem}>
+                                    <View style={styles.GoalListItem}>
                                         <Text>
-                                            {goalItem}
+                                            {item.item}
                                         </Text>
                                     </View>
                                 )
                             }
-                        )
-                    }
-				</ScrollView>
-
+                          }
+                />
 
 			</View>
 
