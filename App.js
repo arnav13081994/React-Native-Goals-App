@@ -1,70 +1,79 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-// import TextInput from "react-native-web/src/exports/TextInput";
+import {StyleSheet, Text, View, Button, TextInput, Alert} from 'react-native';
 
 export default function App() {
 
-  const [goal, updateGoal] = useState("");
-  // const [count, updateCount] = useState(1);
+	const [goal, updateGoal] = useState("");
+	const [goalList, updateGoalList] = useState([]);
 
-  return (
-    <View style={styles.container1}>
-        <View style={styles.container2}>
-
-            <TextInput style={{ height: 40, borderBottomColor: 'black', borderBottomWidth: 1 }}
-                       value={ goal }
-                       placeholder='  Enter new goal! '
-                       onChangeText={ text => {
-                               updateGoal(text);
-                       }}
-                       onSubmitEditing={ (text, eventCount, target) => {
-                           // <Text> text </Text>
-                           console.log(text);
+	const goalInputHandler = (newGoal) => {
+	    updateGoal(newGoal)
+    }
+    const addGoalHandler = () => {
+	//    Create a new Text element and append to the view
+        Alert.alert(`Goal added!` );
+        goalList.push(goal);
+        updateGoalList(goalList);
+        console.log(goalList);
 
 
+    }
 
-                       }}
-            />
+	return (
+		<View style={styles.screen}>
+			<View style={styles.GoalInput}>
 
-            <Button title='+'
-                    onPress={ () => {
+				<TextInput style={{height: 40, borderBottomColor: 'black', borderBottomWidth: 1, width: '80%'}}
+				           value={goal}
+				           placeholder='  Enter new goal! '
+				           onChangeText={goalInputHandler}
+				           onSubmitEditing={addGoalHandler}
+				/>
+
+				<Button title='+'
+				        onPress={addGoalHandler}
+				/>
+
+			</View>
+
+			<View style={styles.GoalList}>
+				<Text> NEW GOALS:</Text>
+				<View>
+
+					<Text style={styles.GoalListItem}> GOAL #1</Text>
+					<Text style={styles.GoalListItem}> GOAL #2</Text>
+					<Text style={styles.GoalListItem}> GOAL #3</Text>
+
+				</View>
 
 
+			</View>
 
 
-                    }}
-
-
-
-
-            />
-
-        </View>
-
-        <View style={styles.container2}>
-            <Text> NEW GOAL LIST</Text>
-
-
-
-        </View>
-
-
-    </View>
-  );
+		</View>
+	);
 }
 
-const styles = StyleSheet.create({
-  container1: {
-    flex: 1,
-    backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  container2: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const styles = StyleSheet.create(
+	{
+		screen: {
+			flex: 1,
+			backgroundColor: '#fff',
+		},
+		GoalInput: {
+			flex: 1,
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'space-evenly',
+		},
+		GoalList: {
+			flex: 3,
+			alignItems: 'center',
+		},
+		GoalListItem: {
+			padding: 10
 
-});
+		}
+
+	}
+);
