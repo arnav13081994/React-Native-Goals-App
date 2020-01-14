@@ -13,8 +13,16 @@ export default function App() {
 		Alert.alert(`Goal added!`);
 		updateGoalList([...goalList, goalAdded]);
 
-
 		// TODO Return focus back to the input field
+	};
+
+	const deleteGoalHandler = ( goaltobedeleted ) => {
+
+		return updateGoalList(goalList.filter( (item) => {
+					return item !== goaltobedeleted;
+				}
+			)
+		);
 	};
 
 	return (
@@ -34,7 +42,7 @@ export default function App() {
 					            )
 				            }
 				          }
-				          renderItem={(item) => <GoalItem value={item.item}/>}
+				          renderItem={(item) => <GoalItem value={item.item} onDelete={ () => deleteGoalHandler(item.item) }   />}
 					// Added a custom component for rendering Goal Items
 				/>
 
