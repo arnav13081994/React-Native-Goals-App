@@ -16,13 +16,9 @@ export default function App() {
 		// TODO Return focus back to the input field
 	};
 
-	const deleteGoalHandler = ( goaltobedeleted ) => {
+	const deleteGoalHandler = (goaltobedeleted) => {
 
-		return updateGoalList(goalList.filter( (item) => {
-					return item !== goaltobedeleted;
-				}
-			)
-		);
+		return updateGoalList(goalList.filter((item) => item !== goaltobedeleted));
 	};
 
 	return (
@@ -34,15 +30,18 @@ export default function App() {
 				<Text> List of Goals:</Text>
 				<FlatList data={goalList}
 				          style={{contentContainerStyle: 'flex-start', width: '100%'}}
-				          ListEmptyComponent={ () => {
-					            return (
+				          ListEmptyComponent={() => {
+					          return (
 						          <View style={{alignItems: 'center', flex: 1, marginVertical: '45%'}}>
-							          <Text style={{color: 'green'}} >Add a goal, bro!</Text>
+							          <Text style={{color: 'green'}}>Add a goal, bro!</Text>
 						          </View>
-					            )
-				            }
+					          )
 				          }
-				          renderItem={(item) => <GoalItem value={item.item} onDelete={ () => deleteGoalHandler(item.item) }   />}
+				          }
+				          renderItem={
+					          (item) => <GoalItem value={item.item}
+					                              onDelete={() => deleteGoalHandler(item.item)}/>
+				          }
 					// Added a custom component for rendering Goal Items
 				/>
 
