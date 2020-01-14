@@ -11,13 +11,13 @@ export default function App() {
 
 	const addGoalHandler = (goalAdded) => {
 		//    Create a new Text element and append to the view
-		updateGoalList([...goalList, goalAdded]);
+		updateGoalList([...goalList, {key:Math.random().toString(), value:goalAdded}]);
 		// Close the modal window
 		updatemodalState(false);
 	};
 
 	const deleteGoalHandler = (goaltobedeleted) => {
-		return updateGoalList(goalList.filter((item) => item !== goaltobedeleted));
+		return updateGoalList(goalList.filter((item) => item.value !== goaltobedeleted));
 	};
 
 	const onCancelHandler = () => updatemodalState(false);
@@ -46,8 +46,8 @@ export default function App() {
 				          }
 				          }
 				          renderItem={
-					          (item) => <GoalItem value={item.item}
-					                              onDelete={() => deleteGoalHandler(item.item)}/>
+					          (item) => <GoalItem value={item.item.value}
+					                              onDelete={() => deleteGoalHandler(item.item.value)}/>
 				          }
 					// Added a custom component for rendering Goal Items
 				/>
