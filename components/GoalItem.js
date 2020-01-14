@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet } from "react-native";
+import {Text, View, StyleSheet} from "react-native";
 
 
 const GoalItem = props => {
@@ -14,15 +14,14 @@ const GoalItem = props => {
 
 
 const styles = StyleSheet.create({
-			GoalListItem: {
-			margin: 10,
-            borderColor: 'black',
-            borderWidth: 1,
-            flex: 1
-		}
+	GoalListItem: {
+		margin: 10,
+		borderColor: 'black',
+		borderWidth: 1,
+		flex: 1
+	}
 
 });
-
 
 
 export default GoalItem;
