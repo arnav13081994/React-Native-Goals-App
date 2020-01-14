@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, TextInput, View, StyleSheet} from "react-native";
+import {Button, TextInput, View, StyleSheet, Modal} from "react-native";
 
 
 const GoalInput = props => {
@@ -11,27 +11,40 @@ const GoalInput = props => {
 
 
 	return (
-		<View style={styles.GoalInput}>
+		<Modal animationType="slide" visible={props.visible}>
 
-			<TextInput style={{height: 40, borderBottomColor: 'black', borderBottomWidth: 1, width: '80%'}}
-			           value={goal}
-			           placeholder='  Enter new goal! '
-			           onChangeText={goalInputHandler}
-			           onSubmitEditing={() => {
-				           updateGoal("");
-				           return props.onAddGoal(goal);
+			<View style={styles.GoalInput}>
 
-			           }
+				<TextInput style={{height: 40, borderBottomColor: 'black', borderBottomWidth: 1, width: '80%'}}
+				           value={goal}
+				           placeholder='  Enter new goal! '
+				           onChangeText={goalInputHandler}
+				           onSubmitEditing={() => {
+					           updateGoal("");
+					           return props.onAddGoal(goal);
 
-			           }
-			/>
+				           }}
+				/>
 
-			<Button
-				title='+'
-				onPress={() => props.onAddGoal(goal)}
-			/>
+				<Button
+					title='+'
+					onPress={() => {
+						updateGoal("");
+						return props.onAddGoal(goal);
+					}}
+				/>
 
-		</View>
+				<Button
+					title='x'
+					onPress={() => {
+						updateGoal("");
+						return props.onCancel();
+					}}
+				/>
+
+			</View>
+
+		</Modal>
 	)
 
 };

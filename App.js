@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Button, TextInput, Alert, FlatList} from 'react-native';
+import {StyleSheet, Text, View, Button, FlatList} from 'react-native';
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
@@ -7,11 +7,13 @@ import GoalInput from "./components/GoalInput";
 export default function App() {
 
 	const [goalList, updateGoalList] = useState([]);
+	const [modalState, updatemodalState] = useState(false);
 
 	const addGoalHandler = (goalAdded) => {
 		//    Create a new Text element and append to the view
-		Alert.alert(`Goal added!`);
 		updateGoalList([...goalList, goalAdded]);
+		// Close the modal window
+		updatemodalState(false);
 
 		// TODO Return focus back to the input field
 	};
@@ -21,10 +23,18 @@ export default function App() {
 		return updateGoalList(goalList.filter((item) => item !== goaltobedeleted));
 	};
 
+	const onCancelHandler = () => updatemodalState(false);
+
 	return (
 		<View style={styles.screen}>
+
+			<View style={{flex: 1, justifyContent: 'center'}}>
+				<Button title='Add New Goal'
+				        onPress={ () => updatemodalState(true) }
+				/>
+			</View>
 			{/* Added a custom components for handling GoalInputs */}
-			<GoalInput onAddGoal={addGoalHandler}/>
+			<GoalInput onAddGoal={addGoalHandler} visible={modalState} onCancel={onCancelHandler} />
 
 			<View style={styles.GoalList}>
 				<Text> List of Goals:</Text>
