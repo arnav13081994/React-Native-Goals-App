@@ -1,4 +1,4 @@
-# This is a basic React Native Goals or Todo App.
+# This is a basic React Native Goals Application.
 
 ### Please note that the functionality is very basic and so is the styling.
 
