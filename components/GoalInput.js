@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import {Button, TextInput, View, StyleSheet} from "react-native";
 
 
-
-
-
 const GoalInput = props => {
 
 	const [goal, updateGoal] = useState("");
@@ -20,18 +17,18 @@ const GoalInput = props => {
 			           value={goal}
 			           placeholder='  Enter new goal! '
 			           onChangeText={goalInputHandler}
-			           onSubmitEditing={ () => {
-			           	    updateGoal("");
-			           	    return props.onAddGoal(goal);
+			           onSubmitEditing={() => {
+				           updateGoal("");
+				           return props.onAddGoal(goal);
 
-			                }
+			           }
 
 			           }
 			/>
 
 			<Button
 				title='+'
-				onPress={ () => props.onAddGoal(goal) }
+				onPress={() => props.onAddGoal(goal)}
 			/>
 
 		</View>
