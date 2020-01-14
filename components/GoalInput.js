@@ -28,6 +28,7 @@ const GoalInput = props => {
 
 				<Button
 					title='+'
+					color='green'
 					onPress={() => {
 						updateGoal("");
 						return props.onAddGoal(goal);
@@ -36,6 +37,7 @@ const GoalInput = props => {
 
 				<Button
 					title='x'
+					color='red'
 					onPress={() => {
 						updateGoal("");
 						return props.onCancel();

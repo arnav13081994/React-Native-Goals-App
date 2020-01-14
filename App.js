@@ -14,12 +14,9 @@ export default function App() {
 		updateGoalList([...goalList, goalAdded]);
 		// Close the modal window
 		updatemodalState(false);
-
-		// TODO Return focus back to the input field
 	};
 
 	const deleteGoalHandler = (goaltobedeleted) => {
-
 		return updateGoalList(goalList.filter((item) => item !== goaltobedeleted));
 	};
 
